@@ -1,0 +1,60 @@
+body {
+    
+    background-image:url(); 
+    background-repeat:no-repeat;
+    background-size:cover;
+    font-family: algerian
+    }
+    
+    .login-form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        padding: 10px;
+        background-color:rgba(0,0,0,0.5) ; 
+        border: 2px solid rgba(12, 217, 236, 0.89);
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .login-form h2 {
+        text-align: center;
+        color: #0df384;
+        font-size: 24px;
+    }
+    
+    .login-form input {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #efefe8;
+        color: #333;
+    }
+    
+    .login-form button {
+        width: 98%;
+        padding: 10px;
+        background-color: #05ed0d;
+        color: hsl(0, 0%, 100%);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .signup-link {
+      font-size: 12px;
+      color: #0ce989;
+      text-align: center;
+    }
+    
+    .signup-link a {
+      color: #ef0ba7;
+      text-decoration: none;
+    }
+
+
+
+    
