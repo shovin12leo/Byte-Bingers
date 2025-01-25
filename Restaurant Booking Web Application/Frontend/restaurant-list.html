@@ -1,0 +1,9 @@
+h2>Restaurants</h2>
+<div ng-controller="RestaurantController">
+    <div ng-repeat="restaurant in restaurants">
+        <h3>{{ restaurant.name }}</h3>
+        <p>{{ restaurant.location }}</p>
+        <p>{{ restaurant.cuisine }}</p>
+        <a href="#!/restaurant/{{ restaurant._id }}">View Details</a>
+    </div>
+</div>
