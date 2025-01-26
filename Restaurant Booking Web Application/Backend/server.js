@@ -1,29 +1,28 @@
-const dotenv = require('dotenv');
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./config/db");
+
+// Import Routes
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const restaurantRoutes = require("./routes/restaurantRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+
 dotenv.config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+connectDB();
 
-const userRoutes = require('./src/routes/authRoutes');
-const restaurantRoutes = require('./src/routes/restaurantRoutes');
-const bookingRoutes = require('./src/routes/bookingRoutes');
-
-const app = express();  // Initialize app here
-
-// Middleware
-app.use(express.json());
+const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/restaurants', restaurantRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/restaurants", restaurantRoutes);
+app.use("/api/reviews", reviewRoutes);
 
-// Database Connection
-mongoose.connect("mongodb://localhost:27017/restaurant_db", { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Database Connected'))
-  .catch((err) => console.log('Database Connection Error:', err));
-
-// Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
