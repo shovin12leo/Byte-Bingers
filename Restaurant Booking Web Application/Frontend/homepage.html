@@ -95,48 +95,6 @@
         <p>&copy; 2025 Your Application</p>
     </footer>
 
-    <script>
-        // Function to fetch user data (notifications, activities)
-        async function fetchUserData() {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                window.location.href = "/login"; // Redirect to login if not authenticated
-                return;
-            }
-
-            try {
-                const response = await fetch("http://localhost:5000/user/data", {
-                    method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                    }
-                });
-
-                const data = await response.json();
-                if (response.ok) {
-                    document.getElementById("username").textContent = data.name;
-                    document.getElementById("notifications").textContent = data.notifications || "No new notifications.";
-                    document.getElementById("activities").textContent = data.activities || "You're doing great!";
-                } else {
-                    console.error(data.error);
-                    document.getElementById("notifications").textContent = "Error loading notifications.";
-                    document.getElementById("activities").textContent = "Error loading activities.";
-                }
-            } catch (err) {
-                console.error(err);
-                document.getElementById("notifications").textContent = "Error loading notifications.";
-                document.getElementById("activities").textContent = "Error loading activities.";
-            }
-        }
-
-        // Handle logout action
-        document.getElementById("logoutBtn").addEventListener("click", () => {
-            localStorage.removeItem("token");
-            window.location.href = "/login"; // Redirect to login page
-        });
-
-        // On page load, fetch user data
-        window.onload = fetchUserData;
-    </script>
+    
 </body>
 </html>

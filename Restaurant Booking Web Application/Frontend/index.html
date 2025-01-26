@@ -3,106 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Image Example</title>
+    <title>Restaurant Discovery</title>
     <style>
-        /* Global styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-        }
+   /* Global styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
 
-        /* Background Container */
-        .background-container {
-            background-image: url('./output.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+/* Background Container */
+.background-container {
+    background-image: url('./output.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: rgb(8, 0, 0);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
 
-        /* Navigation Bar */
-        .navigation nav {
-            position: absolute;
-            top: 1rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-        }
+/* Navigation Bar */
+.navigation nav {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+}
 
-        .navigation nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
+.navigation nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
 
-        .navigation nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+.navigation nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
-        /* Hero Content */
-        .content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 1.5s ease-out forwards;
-        }
+/* Hero Content */
+.content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 1.5s ease-out forwards;
+    color: white; /* White color for the heading */
+}
 
-        /* Search Bar */
-        .search-bar input {
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
-            width: 300px;
-            max-width: 80%;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 1.5s ease-out 0.5s forwards;
-        }
+/* Search Bar */
+.search-bar input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+    max-width: 80%;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 1.5s ease-out 0.5s forwards;
+}
 
-        /* Keyframe for animation */
-        @keyframes slideIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Keyframe for animation */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Restaurant Card */
+.restaurant-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.restaurant-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.7); /* Translucent background for the card */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    padding: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 1.5s ease-out 1s forwards;
+}
+
+.restaurant-card img {
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Title color change to white */
+.restaurant-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white; /* White color for the title */
+}
+
+/* Text inside the card changes to black */
+.restaurant-card p {
+    font-size: 1rem;
+    color: black; /* Black color for the text */
+    margin-bottom: 15px;
+}
+
+.restaurant-card a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.restaurant-card a:hover {
+    color: #218838;
+}
+
     </style>
 </head>
 <body>
     <div class="background-container">
         <header class="navigation">
             <nav>
-                <a href="./">Home</a>
-                <a href="./signup.html">Sign Up</a>
-                <a href="./">View Restaurants</a>
+                <a href="./login.html">Admin Login</a>
+                <a href="./signup.html">User Signup</a>
             </nav>
         </header>
-        <header class="content">
-            <h1>Discover the best food & drinks in Mumbai</h1>
+        <header class="content">w
+            <h1>Discover The Best Restaurant, Cuisine & Dish</h1>
             <div class="search-bar">
                 <input type="text" placeholder="Search for restaurant, cuisine or a dish">
             </div>
         </header>
+
+        <!-- Restaurant Cards -->
+        <div class="restaurant-cards">
+            <div class="restaurant-card">
+                <img src="https://www.theworlds50best.com/discovery/filestore/jpg/Aer%20Bar%20_%20Lounge-Mumbai-India-1.jpg" alt="Restaurant 1">
+                <h2>Aer Bar & Lounge</h2>
+                <p>Mumbai, India
+
+                    For the most stylish open-air drinking experience in Mumbai, 
+                    there’s no better option than Aer Bar & Lounge, set atop the Four Seasons Hotel on the 34th floor.</p>
+                <a href="#">View Details</a>
+            </div>
+            <div class="restaurant-card">
+                <img src="./inside-view-of-lagoon.jpg" alt="Restaurant 2">
+                <h2>Mabruk - The Mediterranean restaurant</h2>
+                <p>This Lebanese offing sets the mood with its casual low seating on a wooden deck and a spectacular 
+                    view of the lagoon area, the pillar less clear-to-the sky dome as well as the other restaurants.</p>
+                <a href="#">View Details</a>
+            </div>
+            <div class="restaurant-card">
+                <img src="./photo1jpg.jpg" alt="Restaurant 3">
+                <h2>Lord of the Drinks</h2>
+                <p>Flaunting the longest island bar in all of Asia,
+                     200ft iconic bar, Lord of the Drinks Lower Parel is the bedazzled destination.</p>
+                <a href="#">View Details</a>
+            </div>
+            <div class="restaurant-card">
+                <img src="./peshawri.jpg" alt="Restaurant 4">
+                <h2>At a glance</h2>
+                <p>The romance of the rugged North West Frontier of India comes alive at this authentic,
+                     award winning restaurant, making it a landmark dining destination in Mumbai.</p>
+                <a href="#">View Details</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
