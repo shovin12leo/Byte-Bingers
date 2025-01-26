@@ -1,28 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant Booking</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image Example</title>
+    <style>
+        /* Global styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Container */
+        .background-container {
+            background-image: url('./output.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Navigation Bar */
+        .navigation nav {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navigation nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .navigation nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Content */
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 1.5s ease-out forwards;
+        }
+
+        /* Search Bar */
+        .search-bar input {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            width: 300px;
+            max-width: 80%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 1.5s ease-out 0.5s forwards;
+        }
+
+        /* Keyframe for animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Restaurant Booking</h1>
-    <nav>
-      <a href="signup.html">Sign Up</a> | 
-      <a href="login.html">Login</a> | 
-      <a href="restaurant-list.html">View Restaurants</a>
-    </nav>
-  </header>
-
-  <main>
-    <h2>Find the best restaurants and book your table</h2>
-    <p>Browse available restaurants and book a table for a fantastic dining experience.</p>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Restaurant Booking Web</p>
-  </footer>
+    <div class="background-container">
+        <header class="navigation">
+            <nav>
+                <a href="./">Home</a>
+                <a href="./signup.html">Sign Up</a>
+                <a href="./">View Restaurants</a>
+            </nav>
+        </header>
+        <header class="content">
+            <h1>Discover the best food & drinks in Mumbai</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for restaurant, cuisine or a dish">
+            </div>
+        </header>
+    </div>
 </body>
 </html>

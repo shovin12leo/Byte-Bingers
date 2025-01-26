@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 45%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="welcome">
+            <h1>Welcome, <span id="username">User</span>!</h1>
+        </div>
+        <div class="content">
+            <section class="section">
+                <h2>Your Notifications</h2>
+                <p id="notifications">Loading...</p>
+            </section>
+            <section class="section">
+                <h2>Recent Activities</h2>
+                <p id="activities">Loading...</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Application</p>
+    </footer>
+
+    <script>
+        // Function to fetch user data (notifications, activities)
+        async function fetchUserData() {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.location.href = "/login"; // Redirect to login if not authenticated
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/user/data", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById("username").textContent = data.name;
+                    document.getElementById("notifications").textContent = data.notifications || "No new notifications.";
+                    document.getElementById("activities").textContent = data.activities || "You're doing great!";
+                } else {
+                    console.error(data.error);
+                    document.getElementById("notifications").textContent = "Error loading notifications.";
+                    document.getElementById("activities").textContent = "Error loading activities.";
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById("notifications").textContent = "Error loading notifications.";
+                document.getElementById("activities").textContent = "Error loading activities.";
+            }
+        }
+
+        // Handle logout action
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("token");
+            window.location.href = "/login"; // Redirect to login page
+        });
+
+        // On page load, fetch user data
+        window.onload = fetchUserData;
+    </script>
+</body>
+</html>
