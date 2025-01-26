@@ -1,26 +1,33 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Booking = require('../models/booking');
+const Booking = require("../models/Booking");
+const transporter = require("../config/email");
 
-// Create Booking
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { userId, restaurantId, date, guests } = req.body;
-    const booking = new Booking({ userId, restaurantId, date, guests });
+    const { userId, restaurantId, date, time, guests, email } = req.body;
+
+    const booking = new Booking({ userId, restaurantId, date, time, guests });
     await booking.save();
-    res.status(201).json({ message: 'Booking created successfully', booking });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
 
-// Get All Bookings
-router.get('/', async (req, res) => {
-  try {
-    const bookings = await Booking.find().populate('userId').populate('restaurantId');
-    res.json(bookings);
+    // Send email confirmation
+    const mailOptions = {
+      from:"shovinmicheldavid1285@gmail.com",
+      to: email,
+      subject: "Booking Confirmation",
+      text: `Your table for ${guests} people has been booked at ${time} on ${date}.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Email error:", error);
+        return res.status(500).json({ message: "Booking successful, but email failed." });
+      }
+      res.status(201).json({ message: "Table booked successfully! Confirmation email sent." });
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Booking Error:", error);
+    res.status(500).json({ message: "Server error." });
   }
 });
 
